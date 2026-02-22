@@ -467,6 +467,7 @@ tr:hover .project-thumbnail img {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  justify-content: center;
 }
 
 .contact-item span {
@@ -488,8 +489,11 @@ tr:hover .project-thumbnail img {
   position: relative;
 }
 
+.social-links-container {
+justify-content: center;
+}
+
 .social-link::after {
-  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -507,46 +511,6 @@ tr:hover .project-thumbnail img {
   width: 100%;
 }
 
-/* --- FORM STYLING --- */
-.contact-container {
-  flex: 1.2;
-  width: 100%;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: block;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--white);
-  font-family: inherit;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--sky);
-  background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 0 15px rgba(58, 154, 255, 0.1);
-}
 
 .reveal {
   opacity: 0;
@@ -618,17 +582,7 @@ footer {
     margin-bottom: 15px;
     opacity: 0.9;
   }
-  .personal-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px 20px;
-  }
-  .personal-grid {
-    grid-template-columns: 1fr;
-  }
-  .badge-group {
-    justify-content: center;
-  }
+
   .standard-header h1 {
     /* Ukuran font yang pas: tidak kekecilan, tidak kebesaran */
     font-size: clamp(2.2rem, 10vw, 3rem);
@@ -683,16 +637,34 @@ footer {
     padding: 20px;
     border-radius: 16px;
   }
+  
+.personal-grid span{
+    font-size: 0.7rem; /* Ukuran deskripsi diperkecil agar muat 2 kolom */
+    line-height: 1.3;
+  }
+
   .badge-group {
     justify-content: center; /* Badge di tengah agar seimbang */
   }
+  .badge-group span{
+    font-size: 0.6rem; /* Ukuran judul diperkecil agar tidak berantakan */
+  }
 
   .card-grid {
-    grid-template-columns: 1fr; /* Kartu layanan jadi satu-satu */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));/* Kartu layanan jadi satu-satu */
   }
 
   .card {
-    padding: 25px;
+    padding: 20px 10px; /* Padding dikurangi supaya teks tidak terlalu mepet */
+    border-radius: 16px; /* Opsional: radius lebih kecil agar lebih proporsional */
+  }
+  .card h3 {
+    font-size: 0.9rem; /* Ukuran judul diperkecil agar tidak berantakan */
+  }
+
+  .card p {
+    font-size: 0.7rem; /* Ukuran deskripsi diperkecil agar muat 2 kolom */
+    line-height: 1.3;
   }
 
   /* Induk tabel */
@@ -804,35 +776,42 @@ footer {
   .contact-info {
     text-align: center;
   }
+  .contact-info h2{
+    font-size: 25px;
+  }
+  .contact-info p{
+    font-size: 10px;
+  }
 
   .social-links-container {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  display: flex;         /* Memastikan flexbox aktif */
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;            /* Jarak antar ikon agar tidak menempel */
+  margin-top: 15px;
+}
 
-  .contact-details {
-    align-items: center;
-  }
+.social-link {
+  text-decoration: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  /* Animasi saat input diklik */
-  .form-group {
-    transition: transform 0.3s ease;
-  }
+/* Efek saat kursor menyentuh ikon (Hover) */
+.social-link:hover {
+  transform: translateY(-5px); /* Ikon sedikit naik ke atas */
+  opacity: 0.8;                /* Sedikit memudar agar terlihat interaktif */
+  filter: brightness(1.2); /* Membuat warna ikon sedikit lebih terang */
+  transform: scale(1.1);   /* Sedikit membesar */
+}
 
-  .form-group:focus-within {
-    transform: translateX(10px); /* Bergeser sedikit saat fokus */
-  }
-
-  /* Animasi tombol kirim */
-  .contact-form .btn-primary {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .contact-form .btn-primary:active {
-    transform: scale(0.98);
-  }
+/* Ukuran ikon agar konsisten */
+.social-link i {
+  font-size: 26px; /* Ukuran yang pas untuk ikon-ikon sosial media */
+  transition: all 0.3s ease;
+}
 }
 
 /* Sembunyikan kontainer mobile saat di layar desktop */
